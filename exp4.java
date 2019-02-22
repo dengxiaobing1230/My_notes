@@ -1,5 +1,5 @@
 package bag;
-
+//添加了一行注释
 
 interface BTtools{
 	static String  name = "里面的人";
