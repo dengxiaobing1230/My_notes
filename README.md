@@ -1,2 +1,1 @@
-# learngit
-用于学习Github
+The repostory is notes set.
