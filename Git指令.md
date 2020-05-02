@@ -7,6 +7,6 @@ git diff    可以查看被更改文件的内容
 git commit -m "message" 将文件提交到仓库  
 ## 版本回退  
 git log     查看从近到远的提交日志  
-git reset   版本回退
-
+git reset -hard commit_id  版本回退
+git reflog  查看历史命令
 ## 连接远程GitHub仓库  
