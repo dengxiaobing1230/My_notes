@@ -9,3 +9,4 @@ git commit -m "message" 将文件提交到仓库
 git log     查看从近到远的提交日志  
 git reset   版本回退
 
+## 连接远程GitHub仓库  
