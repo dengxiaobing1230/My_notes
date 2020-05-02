@@ -1,1 +1,1 @@
-The repostory is notes set.
+这个仓库用来存放我的笔记
