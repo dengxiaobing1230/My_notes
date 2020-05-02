@@ -22,8 +22,7 @@ git checkout -- filename 撤销未提交的修改或者返回到上一次暂存�
 git rm filename 然后 git commit -m "message";
 ## 连接远程GitHub仓库  
 git remote add origin git仓库SSH地址 添加远程仓库地址  
-
-git push -u origin master 将本地文件上传到远程仓库
+git push -u origin master 将本地文件上传到远程仓库  
 git pull origin master 从远程仓库上拉取  
 >如果远程仓库和本地仓库不一致,需要合并的话,就需要在本地项目目录下:   
 >git pull origin master -allow-unrelated-histories  跳过这个警告  
