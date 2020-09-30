@@ -312,13 +312,128 @@ throw new Exception();
 ### 几种数据类型：
 
 1. 顺序表 特点：存储在连续的内存地址上
-
 2. 链表  特点：数据的存储不一定在一块连续的内存空间中，每一个节点对应一个数据元素，由数据域和指针域组成。元素间的逻辑关系通过存储节点之间的链接关系反映出来。
-
 3. 栈   特点：是一种特别的顺序表，必须按照顺序读取，先存入的数据后取出。
-
 4. 队列  特点：按照顺序读取，先存入的先取出。
-
 5. 树   特点：一种特别的链表，他只有一个父节点，但是可以有不止一个的子节点。
-
 6. 图   特点：一种网状数据结构，由非空顶点集合和一个描述顶点间关系的集合组成。
+
+### 集合
+
+#### 集合框架
+
+* Collection接口储存一组不唯一，无序的对象。
+* List接口存储一组不唯一，有序的对象。
+* Set接口存储一组唯一，无序对象。
+* Map接口存储一组键值对象，提供key到value的映射
+  * key无序，唯一
+  * value无序，不唯一
+
+#### List和Set的主要实现类
+
+* **ArrayList**
+
+  * 在内存中分配连续的空间，实现长度可变的数组。
+
+  * 遍历与随机访问的效率高
+
+  * 增删、按内容查询效率低
+
+  * 底层是数组实现
+
+  * JDK1.7使用无参构造创建ArrayList的时候，默认数组长度为10。JDK1.8的时候是0；
+
+  * 方法：
+    * add(Object o)，增加一个元素
+    * size()，获取长度
+    * remove(int index)，删除该位置的元素。
+    * contains(Object o)，是否包含。。。。。
+    
+    * iterator()，返回这个集合的迭代器
+
+* **LinkedList**
+
+  * 底层是双向链表实现
+
+  * 增删节点快，索引较慢
+
+  * 相比较ArrayList而言，多出了用来操作首尾元素的方法。
+
+    addFirst()	addLast()	removeFirst()	removeLast()	getFirst()	getLast()
+
+* **Queue 队列**
+
+  以前是由Vector实现的，但是现在Vector过时了。现在是使用
+
+  `public Interface Queue<E> extends Collection<E>`实现类有ArrayDeque.
+
+* **Deque 双向队列**
+
+  `public Interface Deque<E> extends Collection<E>`实现类有LiskedList
+
+* **HashSet（无序，唯一）**
+
+  * 采用Hashtable哈希表存储结构
+
+  * 增删快，查询快。
+  * 无序
+
+* **LinkedHashSet** 
+
+  * 采用哈希表存储结构，使用链表维护次序。
+  * 有序
+
+* **TreeSet**
+
+  * 采用二叉树结构存储（红黑树）
+  * 有序 查询速度比List快（按内容查询）
+  * 查询速度略慢于HashSet
+  * 数据结构维护复杂
+
+* **List和Set的遍历方式**
+
+  for循环(**Set没有**)	for-each循环	Iterator迭代器	流式编程forEach
+
+### Hash表
+
+#### hashCode和equals方法
+
+hashCode计算哈希码；equals计算是否相同
+
+#### HashMap
+
+采用Hashtable存储结构
+
+增删速度快	查询速度快	
+
+key无序
+
+键唯一	值不唯一
+
+键只可以有一个NULL，值可以有多个NULL。
+
+#### LinkedHashMap
+
+在使用哈希表存储结构的同时，也用链表维护次序
+
+key有序
+
+#### TreeMap
+
+采用红黑树存储
+
+查询速度快于List（按内容查询），略慢于HashMap
+
+key有序（默认升序）
+
+key不可以是NULL	value可以是NULL
+
+​	方法：
+
+* `map.put("CHN","CHINA");`在map里面插入键值对
+* `map.get("CHN");`获取对应键的值
+* `map.contrainsKey("CHN");`
+* `map.isEmpty();`
+* `map.remove();`
+* `map.size()`
+
