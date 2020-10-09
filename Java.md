@@ -394,7 +394,7 @@ throw new Exception();
 
   for循环(**Set没有**)	for-each循环	Iterator迭代器	流式编程forEach
 
-### Hash表
+#### Hash表
 
 #### hashCode和equals方法
 
@@ -432,8 +432,118 @@ key不可以是NULL	value可以是NULL
 
 * `map.put("CHN","CHINA");`在map里面插入键值对
 * `map.get("CHN");`获取对应键的值
-* `map.contrainsKey("CHN");`
+* `map.contrainsKey("CHN");`是否包含对应的键值
 * `map.isEmpty();`
 * `map.remove();`
 * `map.size()`
+
+#### 新一代并发集合类
+
+ConcurrentHashMap >>> HashMap
+
+CopyOnWriteArrayList >>> ArrayList
+
+CopyOnWriteArraySet >>> HashSet
+
+#### 泛型
+
+1. 上限通配符与下限通配符
+
+	```java
+class A{}
+class B extends A{}
+class C extends B{}
+class Test{
+    public static void main(String[] args){
+        ArrayList<? extends B> c;
+        //这里的“？”定义的是一个继承自B类的类型
+        ArrayList<? super B> a;
+        //这里的“？”定义的类型是B的超类
+    }
+}
+	```
+
+2. 方法重载时，不同的泛型不代表不同参数，不可以视作重载
+
+   ```java
+   class Test<T>{
+       private T getType(T t){}
+    private K getType(K k){}
+   }//这样的不是重载
+   ```
+   
+
+#### 函数式接口
+
+​		可以有许多的其他的方法，但是**只能有一个抽象方法**的接口或者抽象类。JDK8提供了一个注解@FunctionalInterface来进行编译检查。
+
+##### 内置的函数式接口
+
+|     **函数式接口**      | **方法名**          | **输入参数** | **输出参数** |                  **作用**                  |
+| :---------------------: | ------------------- | ------------ | ------------ | :----------------------------------------: |
+| **消费型接口Consumer**  | void accept(T t)    | T            | void         |          对类型为T的对象进行操作           |
+| **供给型接口Supplier**  | T get（）           | void         | T            |             返回类型为T的对象              |
+| **函数型接口Function**  | R apply（T t）      | T            | R            | 对类型为T的对象进行操作，返回类型为R的对象 |
+| **断言型接口Predicate** | boolean test（T t） | T            | boolean      | 对类型为T的对象进行操作，返回布尔类型结果  |
+
+##### 方法引用
+
+```java
+new Consumer() {
+            @Override
+            public void accept(Object o) {
+                System.out.println(o);
+            }
+        };
+//=======等同于=======>
+()-{
+    System.out.println(o);
+}
+//=======等同于=======>
+System.out::println;//::后面的是方法，但是不写参数列表
+```
+
+一般的Lambda表达式`()->{}`，根据方法的引用，可以用`类名::方法名`和`变量名::方法名`的方式来调用其他的类的静态方法体作为自己的方法体，前提是自己和他的方法返回值和参数列表完全一致。
+
+##### 流式编程
+
+这是对容器对象功能的增强，不同于字节流，字符流。
+
+Stream3步操作：
+
+1. 创建Stream；
+2. 中间操作：处理Stream；
+3. 终止操作：产生结果；
+
+```java
+List<Integer> list = new ArrayList<>();
+Collections.addAll(list,1,2,3,4,5,6,7,8,9);
+Stream<Integer> stream = list.stream();					//创建操作
+stream = stream.filter(x->60 >= x)						//处理操作
+.distinct()
+.sorted((x1,x2)->{return -Integer.compare(x1,x2);})
+.map((x)->x+5)
+.skip(2);
+ System.out.println(stream.findFirst());				//终止操作
+```
+
+## 17.IO流
+
+### IO流的方向
+
+​		**（判断依据是数据相对于程序的方向）**
+
+​		输入流：数据流向是从数据源到程序（以InputStream，Reader相关的流）
+
+​		输出流：数据流向是从程序到数据源（以OutputStream，Writer相关的流）
+
+```mermaid
+graph LR
+A[数据源]-->|输入流| B[程序]	
+B-->|输出流|A
+```
+
+​		字节流：以字节为单位获取数据。如：InputStream，OutputStream。
+
+​		字符流：以字符为单位获取数据。如：Writer，Reader。
 
