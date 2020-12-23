@@ -122,4 +122,12 @@ p:属性名称=value赋值
 ```
 ### 4.工厂bean
 
-下·
+# 二、部分笔记
+
+1.RequestParam注解
+
+defaultValue：默认值
+
+name和value是同一个意思：这个变量的别名
+
+required：是否是必须的值，如果没有，则报404找不到
